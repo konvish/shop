@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kong.shop.dao.ex.IExUserDAO">
+
+    <sql id="Base_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        password,
+        phone,
+        email,
+        level,
+        jfen,
+        sex,
+        birthday,
+        address,
+        areaCode,
+        nation,
+        country
+    </sql>
+
+    <select id="checkAccountAndPassword" parameterType="java.util.Map" resultType="com.kong.shop.domain.User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.phone!=null">
+                AND phone = #{condition.phone}
+            </if>
+            <if test="condition.password!=null">
+                AND password = #{condition.password}
+            </if>
+            <if test="condition.email!=null">
+                AND email = #{condition.email}
+            </if>
+        </trim>
+    </select>
+</mapper>

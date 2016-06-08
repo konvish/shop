@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kong.shop.dao.IUserDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        password,
+        phone,
+        email,
+        level,
+        jfen,
+        sex,
+        birthday,
+        address,
+        areaCode,
+        nation,
+        country,
+        niName
+    </sql>
+    <insert id="insert" parameterType="User">
+        INSERT INTO shop_user (
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        password,
+        phone,
+        email,
+        level,
+        jfen,
+        sex,
+        birthday,
+        address,
+        areaCode,
+        nation,
+        country,
+        niName
+        ) VALUES (
+        #{creator},
+        #{createDate},
+        #{lastModifier},
+        #{lastModDate},
+        #{status},
+        #{name},
+        #{password},
+        #{phone},
+        #{email},
+        #{level},
+        #{jfen},
+        #{sex},
+        #{birthday},
+        #{address},
+        #{areaCode},
+        #{nation},
+        #{country},
+        #{niName}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+        SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="User">
+        UPDATE shop_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="creator!=null">
+                creator = #{creator},
+            </if>
+            <if test="createDate!=null">
+                createDate = #{createDate},
+            </if>
+            <if test="lastModifier!=null">
+                lastModifier = #{lastModifier},
+            </if>
+            <if test="lastModDate!=null">
+                lastModDate = #{lastModDate},
+            </if>
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="password!=null">
+                password = #{password},
+            </if>
+            <if test="phone!=null">
+                phone = #{phone},
+            </if>
+            <if test="email!=null">
+                email = #{email},
+            </if>
+            <if test="level!=null">
+                level = #{level},
+            </if>
+            <if test="jfen!=null">
+                jfen = #{jfen},
+            </if>
+            <if test="sex!=null">
+                sex = #{sex},
+            </if>
+            <if test="birthday!=null">
+                birthday = #{birthday},
+            </if>
+            <if test="address!=null">
+                address = #{address},
+            </if>
+            <if test="areaCode!=null">
+                areaCode = #{areaCode},
+            </if>
+            <if test="nation!=null">
+                nation = #{nation},
+            </if>
+            <if test="country!=null">
+                country = #{country},
+            </if>
+            <if test="niName!=null">
+                niName = #{niName},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE shop_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.creator!=null">
+                creator = #{map.creator},
+            </if>
+            <if test="map.createDate!=null">
+                createDate = #{map.createDate},
+            </if>
+            <if test="map.lastModifier!=null">
+                lastModifier = #{map.lastModifier},
+            </if>
+            <if test="map.lastModDate!=null">
+                lastModDate = #{map.lastModDate},
+            </if>
+            <if test="map.status!=null">
+                status = #{map.status},
+            </if>
+            <if test="map.name!=null">
+                name = #{map.name},
+            </if>
+            <if test="map.password!=null">
+                password = #{map.password},
+            </if>
+            <if test="map.phone!=null">
+                phone = #{map.phone},
+            </if>
+            <if test="map.email!=null">
+                email = #{map.email},
+            </if>
+            <if test="map.level!=null">
+                level = #{map.level},
+            </if>
+            <if test="map.jfen!=null">
+                jfen = #{map.jfen},
+            </if>
+            <if test="map.sex!=null">
+                sex = #{map.sex},
+            </if>
+            <if test="map.birthday!=null">
+                birthday = #{map.birthday},
+            </if>
+            <if test="map.address!=null">
+                address = #{map.address},
+            </if>
+            <if test="map.areaCode!=null">
+                areaCode = #{map.areaCode},
+            </if>
+            <if test="map.nation!=null">
+                nation = #{map.nation},
+            </if>
+            <if test="map.country!=null">
+                country = #{map.country},
+            </if>
+            <if test="map.niName!=null">
+                niName = #{map.niName},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE shop_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.creator!=null">
+                creator = #{update.creator},
+            </if>
+            <if test="update.createDate!=null">
+                createDate = #{update.createDate},
+            </if>
+            <if test="update.lastModifier!=null">
+                lastModifier = #{update.lastModifier},
+            </if>
+            <if test="update.lastModDate!=null">
+                lastModDate = #{update.lastModDate},
+            </if>
+            <if test="update.status!=null">
+                status = #{update.status},
+            </if>
+            <if test="update.name!=null">
+                name = #{update.name},
+            </if>
+            <if test="update.password!=null">
+                password = #{update.password},
+            </if>
+            <if test="update.phone!=null">
+                phone = #{update.phone},
+            </if>
+            <if test="update.email!=null">
+                email = #{update.email},
+            </if>
+            <if test="update.level!=null">
+                level = #{update.level},
+            </if>
+            <if test="update.jfen!=null">
+                jfen = #{update.jfen},
+            </if>
+            <if test="update.sex!=null">
+                sex = #{update.sex},
+            </if>
+            <if test="update.birthday!=null">
+                birthday = #{update.birthday},
+            </if>
+            <if test="update.address!=null">
+                address = #{update.address},
+            </if>
+            <if test="update.areaCode!=null">
+                areaCode = #{update.areaCode},
+            </if>
+            <if test="update.nation!=null">
+                nation = #{update.nation},
+            </if>
+            <if test="update.country!=null">
+                country = #{update.country},
+            </if>
+            <if test="update.niName!=null">
+                niName = #{update.niName},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.password!=null">
+                AND password = #{condition.password}
+            </if>
+            <if test="condition.phone!=null">
+                AND phone = #{condition.phone}
+            </if>
+            <if test="condition.email!=null">
+                AND email = #{condition.email}
+            </if>
+            <if test="condition.level!=null">
+                AND level = #{condition.level}
+            </if>
+            <if test="condition.jfen!=null">
+                AND jfen = #{condition.jfen}
+            </if>
+            <if test="condition.sex!=null">
+                AND sex = #{condition.sex}
+            </if>
+            <if test="condition.birthday!=null">
+                AND birthday = #{condition.birthday}
+            </if>
+            <if test="condition.address!=null">
+                AND address = #{condition.address}
+            </if>
+            <if test="condition.areaCode!=null">
+                AND areaCode = #{condition.areaCode}
+            </if>
+            <if test="condition.nation!=null">
+                AND nation = #{condition.nation}
+            </if>
+            <if test="condition.country!=null">
+                AND country = #{condition.country}
+            </if>
+            <if test="condition.niName!=null">
+                AND niName = #{condition.niName}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO shop_user (
+                creator,
+                createDate,
+                lastModifier,
+                lastModDate,
+                status,
+                name,
+                password,
+                phone,
+                email,
+                level,
+                jfen,
+                sex,
+                birthday,
+                address,
+                areaCode,
+                nation,
+                country,
+                niName
+        ) VALUES (
+                    #{map.creator},
+                    #{map.createDate},
+                    #{map.lastModifier},
+                    #{map.lastModDate},
+                    #{map.status},
+                    #{map.name},
+                    #{map.password},
+                    #{map.phone},
+                    #{map.email},
+                    #{map.level},
+                    #{map.jfen},
+                    #{map.sex},
+                    #{map.birthday},
+                    #{map.address},
+                    #{map.areaCode},
+                    #{map.nation},
+                    #{map.country},
+                    #{map.niName}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="User">
+        UPDATE shop_user
+        <trim prefix="SET" suffixOverrides=",">
+            creator = #{creator},
+            createDate = #{createDate},
+            lastModifier = #{lastModifier},
+            lastModDate = #{lastModDate},
+            status = #{status},
+            name = #{name},
+            password = #{password},
+            phone = #{phone},
+            email = #{email},
+            level = #{level},
+            jfen = #{jfen},
+            sex = #{sex},
+            birthday = #{birthday},
+            address = #{address},
+            areaCode = #{areaCode},
+            nation = #{nation},
+            country = #{country},
+            niName = #{niName},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM shop_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM shop_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="creator!=null">
+                AND creator = #{creator}
+            </if>
+            <if test="createDate!=null">
+                AND createDate = #{createDate}
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier = #{lastModifier}
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate = #{lastModDate}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
+            </if>
+            <if test="name!=null">
+                AND name = #{name}
+            </if>
+            <if test="password!=null">
+                AND password = #{password}
+            </if>
+            <if test="phone!=null">
+                AND phone = #{phone}
+            </if>
+            <if test="email!=null">
+                AND email = #{email}
+            </if>
+            <if test="level!=null">
+                AND level = #{level}
+            </if>
+            <if test="jfen!=null">
+                AND jfen = #{jfen}
+            </if>
+            <if test="sex!=null">
+                AND sex = #{sex}
+            </if>
+            <if test="birthday!=null">
+                AND birthday = #{birthday}
+            </if>
+            <if test="address!=null">
+                AND address = #{address}
+            </if>
+            <if test="areaCode!=null">
+                AND areaCode = #{areaCode}
+            </if>
+            <if test="nation!=null">
+                AND nation = #{nation}
+            </if>
+            <if test="country!=null">
+                AND country = #{country}
+            </if>
+            <if test="niName!=null">
+                AND niName = #{niName}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM shop_user WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Integer" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+       
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_user WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_user WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_user
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_user
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   lastModifier  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   lastModDate  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   name  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.password!=null">
+                ${condition.groupOp}   password  ${condition.password.op}  #{condition.password.data}
+            </if>
+            <if test="condition.phone!=null">
+                ${condition.groupOp}   phone  ${condition.phone.op}  #{condition.phone.data}
+            </if>
+            <if test="condition.email!=null">
+                ${condition.groupOp}   email  ${condition.email.op}  #{condition.email.data}
+            </if>
+            <if test="condition.level!=null">
+                ${condition.groupOp}   level  ${condition.level.op}  #{condition.level.data}
+            </if>
+            <if test="condition.jfen!=null">
+                ${condition.groupOp}   jfen  ${condition.jfen.op}  #{condition.jfen.data}
+            </if>
+            <if test="condition.sex!=null">
+                ${condition.groupOp}   sex  ${condition.sex.op}  #{condition.sex.data}
+            </if>
+            <if test="condition.birthday!=null">
+                ${condition.groupOp}   birthday  ${condition.birthday.op}  #{condition.birthday.data}
+            </if>
+            <if test="condition.address!=null">
+                ${condition.groupOp}   address  ${condition.address.op}  #{condition.address.data}
+            </if>
+            <if test="condition.areaCode!=null">
+                ${condition.groupOp}   areaCode  ${condition.areaCode.op}  #{condition.areaCode.data}
+            </if>
+            <if test="condition.nation!=null">
+                ${condition.groupOp}   nation  ${condition.nation.op}  #{condition.nation.data}
+            </if>
+            <if test="condition.country!=null">
+                ${condition.groupOp}   country  ${condition.country.op}  #{condition.country.data}
+            </if>
+            <if test="condition.niName!=null">
+                ${condition.groupOp}   country  ${condition.niName.op}  #{condition.niName.data}
+            </if>
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id like CONCAT('%', #{id} , '%')
+            </if>
+            <if test="creator!=null">
+                AND creator like CONCAT('%', #{creator} , '%')
+            </if>
+            <if test="createDate!=null">
+                AND createDate like CONCAT('%', #{createDate} , '%')
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier like CONCAT('%', #{lastModifier} , '%')
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate like CONCAT('%', #{lastModDate} , '%')
+            </if>
+            <if test="status!=null">
+                AND status like CONCAT('%', #{status} , '%')
+            </if>
+            <if test="name!=null">
+                AND name like CONCAT('%', #{name} , '%')
+            </if>
+            <if test="password!=null">
+                AND password like CONCAT('%', #{password} , '%')
+            </if>
+            <if test="phone!=null">
+                AND phone like CONCAT('%', #{phone} , '%')
+            </if>
+            <if test="email!=null">
+                AND email like CONCAT('%', #{email} , '%')
+            </if>
+            <if test="level!=null">
+                AND level like CONCAT('%', #{level} , '%')
+            </if>
+            <if test="jfen!=null">
+                AND jfen like CONCAT('%', #{jfen} , '%')
+            </if>
+            <if test="sex!=null">
+                AND sex like CONCAT('%', #{sex} , '%')
+            </if>
+            <if test="birthday!=null">
+                AND birthday like CONCAT('%', #{birthday} , '%')
+            </if>
+            <if test="address!=null">
+                AND address like CONCAT('%', #{address} , '%')
+            </if>
+            <if test="areaCode!=null">
+                AND areaCode like CONCAT('%', #{areaCode} , '%')
+            </if>
+            <if test="nation!=null">
+                AND nation like CONCAT('%', #{nation} , '%')
+            </if>
+            <if test="country!=null">
+                AND country like CONCAT('%', #{country} , '%')
+            </if>
+            <if test="niName!=null">
+                AND niName like CONCAT('%', #{niName} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.password!=null">
+                AND password = #{condition.password}
+            </if>
+            <if test="condition.phone!=null">
+                AND phone = #{condition.phone}
+            </if>
+            <if test="condition.email!=null">
+                AND email = #{condition.email}
+            </if>
+            <if test="condition.level!=null">
+                AND level = #{condition.level}
+            </if>
+            <if test="condition.jfen!=null">
+                AND jfen = #{condition.jfen}
+            </if>
+            <if test="condition.sex!=null">
+                AND sex = #{condition.sex}
+            </if>
+            <if test="condition.birthday!=null">
+                AND birthday = #{condition.birthday}
+            </if>
+            <if test="condition.address!=null">
+                AND address = #{condition.address}
+            </if>
+            <if test="condition.areaCode!=null">
+                AND areaCode = #{condition.areaCode}
+            </if>
+            <if test="condition.nation!=null">
+                AND nation = #{condition.nation}
+            </if>
+            <if test="condition.country!=null">
+                AND country = #{condition.country}
+            </if>
+            <if test="condition.niName!=null">
+                AND niName = #{condition.niName}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.password!=null">
+                AND password = #{condition.password}
+            </if>
+            <if test="condition.phone!=null">
+                AND phone = #{condition.phone}
+            </if>
+            <if test="condition.email!=null">
+                AND email = #{condition.email}
+            </if>
+            <if test="condition.level!=null">
+                AND level = #{condition.level}
+            </if>
+            <if test="condition.jfen!=null">
+                AND jfen = #{condition.jfen}
+            </if>
+            <if test="condition.sex!=null">
+                AND sex = #{condition.sex}
+            </if>
+            <if test="condition.birthday!=null">
+                AND birthday = #{condition.birthday}
+            </if>
+            <if test="condition.address!=null">
+                AND address = #{condition.address}
+            </if>
+            <if test="condition.areaCode!=null">
+                AND areaCode = #{condition.areaCode}
+            </if>
+            <if test="condition.nation!=null">
+                AND nation = #{condition.nation}
+            </if>
+            <if test="condition.country!=null">
+                AND country = #{condition.country}
+            </if>
+            <if test="condition.niName!=null">
+                AND niName = #{condition.niName}
+            </if>
+        </trim>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM shop_user
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="creator!=null">
+               ${groupOp} creator ${creator.op}  #{creator.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} createDate ${createDate.op}  #{createDate.data}
+           </if>
+           <if test="lastModifier!=null">
+               ${groupOp} lastModifier ${lastModifier.op}  #{lastModifier.data}
+           </if>
+           <if test="lastModDate!=null">
+               ${groupOp} lastModDate ${lastModDate.op}  #{lastModDate.data}
+           </if>
+           <if test="status!=null">
+               ${groupOp} status ${status.op}  #{status.data}
+           </if>
+           <if test="name!=null">
+               ${groupOp} name ${name.op}  #{name.data}
+           </if>
+           <if test="password!=null">
+               ${groupOp} password ${password.op}  #{password.data}
+           </if>
+           <if test="phone!=null">
+               ${groupOp} phone ${phone.op}  #{phone.data}
+           </if>
+           <if test="email!=null">
+               ${groupOp} email ${email.op}  #{email.data}
+           </if>
+           <if test="level!=null">
+               ${groupOp} level ${level.op}  #{level.data}
+           </if>
+           <if test="jfen!=null">
+               ${groupOp} jfen ${jfen.op}  #{jfen.data}
+           </if>
+           <if test="sex!=null">
+               ${groupOp} sex ${sex.op}  #{sex.data}
+           </if>
+           <if test="birthday!=null">
+               ${groupOp} birthday ${birthday.op}  #{birthday.data}
+           </if>
+           <if test="address!=null">
+               ${groupOp} address ${address.op}  #{address.data}
+           </if>
+           <if test="areaCode!=null">
+               ${groupOp} areaCode ${areaCode.op}  #{areaCode.data}
+           </if>
+           <if test="nation!=null">
+               ${groupOp} nation ${nation.op}  #{nation.data}
+           </if>
+           <if test="country!=null">
+               ${groupOp} country ${country.op}  #{country.data}
+           </if>
+           <if test="niName!=null">
+               ${groupOp} country ${niName.op}  #{niName.data}
+           </if>
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        SELECT
+        MAX(id)
+        FROM shop_user
+    </select>
+
+</mapper>
+

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.thinkjoy.cloudstack:cs-dynconfig-client:0.0.36-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-dynconfig-client/0.0.36-SNAPSHOT/483111dc76ef43d5176154e5b6e9ba81f7ca3dd4/cs-dynconfig-client-0.0.36-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-dynconfig-client/0.0.36-SNAPSHOT/c19582b19cd18ca21c2ff3fa58487ad38558ca53/cs-dynconfig-client-0.0.36-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

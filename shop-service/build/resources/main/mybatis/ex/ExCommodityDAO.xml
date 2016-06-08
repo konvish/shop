@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kong.shop.dao.ex.IExCommodityDAO">
+    <sql id="Base_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        storeId,
+        typeId,
+        price,
+        brand,
+        description,
+        pic,
+        weight,
+        number,
+        production,
+        color,
+        datailPic,
+        remark
+    </sql>
+
+    <sql id="Page_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        storeId,
+        typeId,
+        price,
+        brand,
+        description,
+        pic,
+        weight,
+        number,
+        production,
+        color,
+        datailPic,
+        remark,
+        (SELECT b.name FROM shop_store b WHERE a.storeId=b.id) AS storeName,
+        (SELECT c.name FROM shop_category c WHERE a.typeId = c.id) AS categoryName
+    </sql>
+
+    <select id="queryPageByCondition" resultType="com.kong.shop.domain.ex.ExCommodity">
+        SELECT
+        <include refid="Page_Column_List"/>
+        FROM shop_commodity a
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp} id ${condition.id.op} #{condition.id.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp} creator ${condition.creator.op} #{condition.creator.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp} createDate ${condition.createDate.op} #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp} lastModifier ${condition.lastModifier.op} #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp} lastModDate ${condition.lastModDate.op} #{condition.lastModDate.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp} status ${condition.status.op} #{condition.status.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp} name ${condition.name.op} #{condition.name.data}
+            </if>
+            <if test="condition.storeId!=null">
+                ${condition.groupOp} storeId ${condition.storeId.op} #{condition.storeId.data}
+            </if>
+            <if test="condition.typeId!=null">
+                ${condition.groupOp} typeId ${condition.typeId.op} #{condition.typeId.data}
+            </if>
+            <if test="condition.price!=null">
+                ${condition.groupOp} price ${condition.price.op} #{condition.price.data}
+            </if>
+            <if test="condition.brand!=null">
+                ${condition.groupOp} brand ${condition.brand.op} #{condition.brand.data}
+            </if>
+            <if test="condition.description!=null">
+                ${condition.groupOp} description ${condition.description.op} #{condition.description.data}
+            </if>
+            <if test="condition.pic!=null">
+                ${condition.groupOp} pic ${condition.pic.op} #{condition.pic.data}
+            </if>
+            <if test="condition.weight!=null">
+                ${condition.groupOp} weight ${condition.weight.op} #{condition.weight.data}
+            </if>
+            <if test="condition.number!=null">
+                ${condition.groupOp} number ${condition.number.op} #{condition.number.data}
+            </if>
+            <if test="condition.production!=null">
+                ${condition.groupOp} production ${condition.production.op} #{condition.production.data}
+            </if>
+            <if test="condition.color!=null">
+                ${condition.groupOp} color ${condition.color.op} #{condition.color.data}
+            </if>
+            <if test="condition.datailPic!=null">
+                ${condition.groupOp} datailPic ${condition.datailPic.op} #{condition.datailPic.data}
+            </if>
+            <if test="condition.remark!=null">
+                ${condition.groupOp} remark ${condition.remark.op} #{condition.remark.data}
+            </if>
+        </where>
+
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="fetch" parameterType="java.lang.Integer" resultType="com.kong.shop.domain.ex.ExCommodity">
+        SELECT
+        <include refid="Page_Column_List" />
+        FROM shop_commodity a
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="com.kong.shop.domain.ex.ExCommodity">
+        SELECT
+        <include refid="Page_Column_List" />
+        FROM shop_commodity a WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+</mapper>

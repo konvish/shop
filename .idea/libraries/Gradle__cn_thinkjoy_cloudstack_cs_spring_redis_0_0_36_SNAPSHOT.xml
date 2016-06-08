@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.thinkjoy.cloudstack:cs-spring-redis:0.0.36-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-spring-redis/0.0.36-SNAPSHOT/7b265d91090ec6b1449fed629018e9a1194244bc/cs-spring-redis-0.0.36-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-spring-redis/0.0.36-SNAPSHOT/da7338028dfac36324c2d2181ff7b4ef4cec2f4/cs-spring-redis-0.0.36-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kong.shop.dao.ex.IExOrderCommodityListDAO">
+    <sql id="Base_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        commodityId,
+        orderId,
+        number,
+        price,
+        (SELECT b.name from shop_commodity b WHERE a.commodityId = b.id) AS commodityName
+    </sql>
+    <select id="queryOrderCommodityListByOrderId" resultType="com.kong.shop.domain.ex.ExOrderCommodityList">
+        select
+        <include refid="Base_Column_List" />
+        from shop_order_commodity_list a
+        WHERE orderId = #{orderId}
+    </select>
+</mapper>

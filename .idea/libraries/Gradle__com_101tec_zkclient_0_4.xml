@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.101tec:zkclient:0.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.101tec/zkclient/0.4/71b48ae0bacac3cb3c4271c76aaf5ee2c13c84df/zkclient-0.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.101tec/zkclient/0.4/16ffdff07eb9e4fbb9672c068c060c2ea1b4f0ea/zkclient-0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

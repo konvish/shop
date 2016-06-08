@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.thinkjoy.common:thinkjoy-kafka-common:0.1.97-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-kafka-common/0.1.97-SNAPSHOT/a323adfc1e238923006ece2ca7a14ed8a169b077/thinkjoy-kafka-common-0.1.97-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.common/thinkjoy-kafka-common/0.1.97-SNAPSHOT/8639f15251f83333645de8102fc8edc76f04c29e/thinkjoy-kafka-common-0.1.97-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

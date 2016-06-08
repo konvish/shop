@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.thinkjoy.cloudstack:cs-common:0.0.36-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-common/0.0.36-SNAPSHOT/9f7b7178ad75ae8b686a3cc3b5a40dd1ba5d2d7/cs-common-0.0.36-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-common/0.0.36-SNAPSHOT/d51534a204818585e69b1c8670889cb514cc286d/cs-common-0.0.36-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

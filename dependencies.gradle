@@ -1,0 +1,10 @@
+configure(allprojects) { project ->
+    ext.thinkjoyCommonVersion="0.1.97-SNAPSHOT"
+    ext.thinkjoyKafakaCommonVersion="0.1.97-SNAPSHOT"
+    ext.thinkjoyCloudstackVersion="0.0.29-SNAPSHOT"
+    ext.springTestVersion="4.2.4.RELEASE"
+    ext.mysqlConnectorVersion="5.1.26"
+    ext.dubboVersion="2.5.3"
+    ext.dubboZKClientVersion="0.4"
+    ext.freemarkerVersion="2.3.20"
+}

@@ -1,0 +1,127 @@
+<!--
+* Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
+*
+* Project Name: shop
+* $Id:  SalesReturn.html 2016-01-18 15:55:25 $
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>管理</title>
+    <link href="/css/css.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" charset="utf-8" src="/libs/jquery/jquery-1.9.1.min.js"></script>
+    <script language="JavaScript" charset="utf-8" src="/libs/js_pack.js"></script>
+    <!--common-->
+    <script type="text/javascript" src="/libs/formvalues.js"></script>
+    <script type="text/javascript" src="/libs/underscore.js"></script>
+    <!--angular-->
+    <script type="text/javascript" src="/libs/angular/angularjs.js"></script>
+    <script language="javascript" charset="utf-8" src="/js/salesReturn/index.js"></script>
+
+</head>
+<body style="padding-bottom:40px"  ng-app="modelApp" ng-controller="modelListCtrl">
+<div id="content">
+    <div class="search">
+        <div class="tj">
+            <span class="label"><b>名称：</b>
+                <input class="txt" id="searchName"  type="text" name=""  value="请输入关键字" onFocus="TxtOF(this)" onBlur="TxtOB(this)"/>
+            </span>
+            <a href="#" class=" bt_org" ng-click="load();">查询</a>
+        </div>
+    </div>
+</div>
+
+<!--<div class="top_bt"> <a href="#" onclick="$('#P1').fadeIn('fast')">增加</a></div>-->
+<div class="top_bt"> <a href="#" ng-click="show(-1)">全部</a></div>
+<div class="top_bt"> <a href="#" ng-click="show(0)">未处理</a></div>
+<div class="top_bt"> <a href="#" ng-click="show(6)">查看退货成功</a></div>
+<div class="top_bt"> <a href="#" ng-click="show(8)">查看退货失败</a></div>
+<div class="top_bt" ng-if="PStatus"> <a href="#" ng-click="deleteAll(6)">批量同意</a></div>
+<div class="top_bt" ng-if="PStatus"> <a href="#" ng-click="deleteAll(8)">批量拒绝</a></div>
+
+<table class="table_1" cellpadding="0" cellspacing="0">
+    <tr>
+        <th width="8%"><input type="checkbox" id="checkAll" ng-click="checkAll($event,salesReturnList)"/></th>
+        <th width="12%">商品名称 </th>
+        <th width="12%">退货人 </th>
+        <th width="12%">退货原因
+        <th width="12%">状态 </th>
+        <th width="20%">操作</th>
+    </tr>
+    <tr ng-repeat="list in salesReturnList">
+        <td><input type="checkbox" value="[[list.id]]" id={{list.id}} ng-checked="isSelected(list.id)" ng-click="updateSelection($event,list.id)"/></td>
+        <td>[[list.commodityName]]</td>
+        <td>[[list.userName]]</td>
+        <td>[[list.reason]]</td>
+        <td>[[list.status | isStatus]]</td>
+        <td>
+            <input name="" type="button" value="同意" ng-click="modify(list.id)"/>
+            <input name="" type="button" value="拒绝" ng-click="delete(list.id,list.status)"/>
+        </td>
+    </tr>
+</table>
+
+<div class="page_num">
+    <a ng-class="{true:'disabled'}[currentPage==1]" ng-click="currentPage=1;load()">首页</a>
+    <a href="#" ng-class="{true:'disabled'}[currentPage==1]" ng-click="prev()">上页</a>
+    <a href="#" ng-class="{true:'disabled'}[currentPage==totalPage]" ng-click="next()">下页</a>
+    <a href="#" ng-class="{true:'disabled'}[currentPage==totalPage]" ng-click="currentPage=totalPage;load()">末页</a>
+    &emsp;当前第
+    <input typt="text" id="toPage" ng-model="targetPage" onkeypress="if(event.keyCode==13){btn.click();}"/>
+    <input type="hidden" name="btn" id="btn" ng-click="toPage()" />
+    页/共[[totalPage]]页，每页
+    <select name="pageSize" ng-model="pageSize" ng-change="pageSizeChange()">
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+
+    </select>
+    条，共<em>[[totalRecord]]</em>条记录
+</div>
+
+
+<div id="P1" class="pop_bg">
+
+    <!--[if lte IE 6]><iframe src="about:blank"></iframe><![endif]-->
+    <div class="form">
+        <div class="user-edit">
+            <div class="remark"> 注：带* 号为必填项 </div>
+            <table class="table_1" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th width="20%;"> <span>*</span> 名称： </th>
+                    <td width="30%"><input type="text" name="addSalesReturnName" id="addSalesReturnName" ng-model="addSalesReturnName" style="width: 185px"/></td>
+                </tr>
+            </table>
+            <div class="btn">
+                <input name="" type="button" value="确认" class="oper" ng-click="add()"/>
+                <input name="" type="button" value="取消" class="oper" onClick="popOut('#P1')"/>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div id="P2" class="pop_bg">
+
+    <div class="form">
+        <div class="user-edit">
+            <div class="remark"> 注：带* 号为必填项 </div>
+            <table class="table_1" cellpupdateing="0" cellspacing="0">
+                <input type="hidden" id="updateId" ng-model="updateId" name="updateId"/>
+                <tr>
+                    <th width="20%;"> <span>*</span> 目录名称： </th>
+                    <td width="30%"><input type="text" name="updateSalesReturnName" id="updateSalesReturnName" ng-model="updateSalesReturnName" style="width: 185px" /></td>
+                </tr>
+            </table>
+            <div class="btn">
+                <input name="" type="button" value="确认" class="oper" ng-click="update()"/>
+                <input name="" type="button" value="取消" class="oper" onClick="popOut('#P2')"/>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

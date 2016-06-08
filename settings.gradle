@@ -1,0 +1,10 @@
+rootProject.name = 'shop'
+include 'shop-api'
+include 'shop-admin-war'
+include 'shop-domain'
+include 'shop-service'
+include 'shop-web-war'
+include 'shop-api'
+include 'shop-facade'
+include 'shop-mq'
+

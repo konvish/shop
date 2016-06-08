@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--消费者名称-->
+    <dubbo:application name="shop-facade-consumer"/>
+
+    <!-- 使用zookeeper广播注册中心暴露发现服务地址 -->
+    <dubbo:registry address="zookeeper://mc.zk.kong.com:2181"/>
+
+    <!-- 模块 -->
+    <!--<dubbo:reference interface="cn.thinkjoy.qky.daoxue.open.api.basedata.Ixxx" id="xxx"  />-->
+
+</beans>

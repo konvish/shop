@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.curator:curator-recipes:2.5.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.curator/curator-recipes/2.5.0/81e4b4720f3a7485e7e1b9ceabb31c5fabd16610/curator-recipes-2.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.curator/curator-recipes/2.5.0/8d0e85739203ea2c9ac25536bfb1602ced621a76/curator-recipes-2.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

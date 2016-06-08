@@ -1,0 +1,268 @@
+<!--
+* Copyright (c) 2013-2014, thinkjoy Inc. All Rights Reserved.
+*
+* Project Name: qky-resource
+* $Id:  User.html 2015-11-13 18:08:47 $
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>管理</title>
+    <link href="/css/css.css" rel="stylesheet" type="text/css"/>
+    <script language="JavaScript" charset="utf-8" src="/libs/jquery/jquery-1.9.1.min.js"></script>
+    <script language="JavaScript" charset="utf-8" src="/libs/js_pack.js"></script>
+    <script language="JavaScript" charset="utf-8" src="/libs/md5.js"></script>
+    <!--common-->
+    <script type="text/javascript" src="/libs/formvalues.js"></script>
+    <script type="text/javascript" src="/libs/underscore.js"></script>
+    <!--angular-->
+    <script type="text/javascript" src="/libs/angular/angularjs.js"></script>
+    <script language="javascript" charset="utf-8" src="/js/admin/index.js"></script>
+    <script language="javascript" charset="utf-8" src="/js/util.js"></script>
+
+
+</head>
+<body style="padding-bottom:40px" ng-app="modelApp" ng-controller="modelListCtrl">
+<div id="content">
+    <div class="search">
+        <div class="tj">
+            <span class="label"><b>名称：</b>
+                <input class="txt" id="searchName" type="text" name="" value="请输入关键字" onFocus="TxtOF(this)"
+                       onBlur="TxtOB(this)"/>
+            </span>
+            <a href="#" class=" bt_org" ng-click="load();">查询</a>
+        </div>
+    </div>
+</div>
+
+<div class="top_bt"><a href="#" onclick="$('#P1').fadeIn('fast')">增加用户</a></div>
+<div class="top_bt"><a href="#" ng-click="changePasswordui()">修改密码</a></div>
+<div class="top_bt"> <a href="#" ng-click="deleteAll();">批量删除</a></div>
+
+<table class="table_1" cellpadding="0" cellspacing="0">
+    <tr>
+        <th width="8%"><input type="checkbox" id="checkAll"  ng-click="checkAll($event,adminList)"/></th>
+        <th width="12%">用户名称</th>
+        <th width="12%">用户账号</th>
+        <th width="12%">用户角色</th>
+        <th width="12%">所属商店</th>
+        <th width="12%">状态</th>
+        <th width="20%">操作</th>
+    </tr>
+    <tr ng-repeat="list in adminList">
+        <td><input type="checkbox" value="[[list.id]]" id={{list.id}} ng-checked="isSelected(list.id)" ng-click="updateSelection($event,list.id)"/></td>
+        <td>[[list.name]]</td>
+        <td>[[list.account]]</td>
+        <td>[[list.roleName]]</td>
+        <td>[[list.storeName]]</td>
+        <td>[[list.status | isStatus]]</td>
+        <td>
+            <input id="open" name="" type="button" value="启用" ng-click="open(list.id)"
+                   style="display: [[list.openShowType]];"/>
+            <input id="out" name="" type="button" value="停用" ng-click="out(list.id)"
+                   style="display: [[list.outShowType]];"/>
+            <input name="" type="button" value="编辑" ng-click="edit(list.id)"/>
+            <input name="" type="button" value="删除" ng-click="delete(list.id)"/>
+        </td>
+    </tr>
+</table>
+
+<div class="page_num">
+    <a ng-class="{true:'disabled'}[currentPage==1]" ng-click="currentPage=1;load()">首页</a>
+    <a href="#" ng-class="{true:'disabled'}[currentPage==1]" ng-click="prev()">上页</a>
+    <a href="#" ng-class="{true:'disabled'}[currentPage==totalPage]" ng-click="next()">下页</a>
+    <a href="#" ng-class="{true:'disabled'}[currentPage==totalPage]" ng-click="currentPage=totalPage;load()">末页</a>
+    &emsp;当前第
+    <input typt="text" id="toPage" ng-model="targetPage" onkeypress="if(event.keyCode==13){btn.click();}"/>
+    <input type="hidden" name="btn" id="btn" ng-click="toPage()" />
+    页/共[[totalPage]]页，每页
+    <select name="pageSize" ng-model="pageSize" ng-change="pageSizeChange()">
+        <option>10</option>
+        <option>20</option>
+        <option>50</option>
+
+    </select>
+    条，共<em>[[totalRecord]]</em>条记录
+</div>
+
+
+<div id="P1" class="pop_bg">
+
+    <!--[if lte IE 6]>
+    <iframe src="about:blank"></iframe><![endif]-->
+    <div class="form">
+        <div class="user-edit">
+            <div class="remark"> 注：带* 号为必填项</div>
+            <table class="table_1" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th width="20%;"><span>*</span> 用户名称：</th>
+                    <td width="30%"><input type="text" name="addAdminName" id="addAdminName" ng-model="addAdminName"
+                                           onblur="noNullCheck('addAdminNameTip','不允许为空。',this.value)"
+                                           style="width: 185px"/>
+
+                        <div id="addAdminNameTip" class="set_tips"/>
+                    </td>
+                    <th width="20%;"><span>*</span> 用户账号：</th>
+                    <td width="30%"><input type="text" name="addAccount" id="addAccount" ng-model="addAccount"
+                                           onblur="noNullCheck('addAccountTip','不允许为空。',this.value)"
+                                           style="width: 185px"/>
+
+                        <div id="addAccountTip" class="set_tips"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="20%;"><span>*</span> 用户密码：</th>
+                    <td width="30%"><input type="password" name="addPassword" id="addPassword" ng-model="addPassword"
+                                           onblur="noNullCheck('addPasswordTip','不允许为空。',this.value)"
+                                           style="width: 190px;    height: 24px"/>
+
+                        <div id="addPasswordTip" class="set_tips"/>
+                    </td>
+                    <th width="20%;"><span>*</span> 所属角色：</th>
+                    <td width="30%"><select id="addRolesId" name="addRolesId" ng-model="addRolesId"
+                                            ng-options="roles.id as roles.name for roles in rolesList" type="text"
+                                            style="width: 190px"/>
+                        <input hidden id="addRolesName" name="addRolesName" ng-model="addRolesName" type="text"
+                               style="width: 185px" onFocus="TxtOF(this)" onBlur="TxtOB(this)"/>
+                </tr>
+                <tr>
+                    <th width="20%;">搜索商店：</th>
+                    <td width="30%"><input id="searchStoreName" name="searchStoreName" ng-model="searchStoreName" type="text" style="width: 180px"/>
+                        <input type="button" value="搜索" ng-click="searchStore(searchStoreName)"/>
+                    </td>
+                    <th width="20%;"><span>*</span> 所属商店：</th>
+                    <td width="30%"><select id="addStore" name="addStore" ng-model="addStore"
+                    ng-options="store.id as store.name for store in storeList" type="text"
+                    style="width: 190px">
+                        <option class="addOption" value="">自营</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <th width="20%;">联系方式：</th>
+                    <td width="30%"><input type="text" name="addTelephone" id="addTelephone" ng-model="addTelephone"
+                                           style="width: 185px"/></td>
+                    <th width="20%;">电子邮件：</th>
+                    <td width="30%"><input type="text" name="addEmail" id="addEmail" ng-model="addEmail"
+                                           style="width: 185px"/></td>
+                </tr>
+            </table>
+            <div class="btn">
+                <input name="" type="button" value="确认" class="oper"
+                       ng-click="checkData('add','addAdminName,addAccount,addPassword,addRolesId','用户名称,用户账号,用户密码,所属角色')"/>
+                <input name="" type="button" value="取消" class="oper" onClick="popOut('#P1')"/>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div id="P2" class="pop_bg">
+
+    <div class="form">
+        <div class="user-edit">
+            <div class="remark"> 注：带* 号为必填项</div>
+            <table class="table_1" cellpupdateing="0" cellspacing="0">
+                <input type="hidden" id="updateId" ng-model="updateId" name="updateId"/>
+                <tr>
+                    <th width="20%;"><span>*</span> 用户名称：</th>
+                    <td width="30%"><input type="text" name="updateAdminName" id="updateAdminName"
+                                           onblur="noNullCheck('updateAdminNameTip','不允许为空。',this.value)"
+                                           ng-model="updateAdminName" style="width: 185px"/>
+
+                        <div id="updateAdminNameTip" class="set_tips"/>
+                    </td>
+                    <th width="20%;"><span>*</span> 用户账号：</th>
+                    <td width="30%"><input type="text" name="updateAccount" id="updateAccount" ng-model="updateAccount"
+                                           onblur="noNullCheck('updateAccountTip','不允许为空。',this.value)"
+                                           style="width: 185px"/>
+
+                        <div id="updateAccountTip" class="set_tips"/>
+                    </td>
+                </tr>
+                <tr>
+                    <!--  <th width="20%;"> <span>*</span> 用户密码： </th>
+                      <td width="30%"><input type="password" name="updatePassword" id="updatePassword" ng-model="updatePassword" style="width: 190px;    height: 24px"/></td>-->
+                    <th width="20%;"><span>*</span> 所属角色：</th>
+                    <td width="30%"><select id="updateRolesId" name="updateRolesId" ng-model="updateRolesId"
+                                            ng-options="roles.id as roles.name for roles in rolesList" type="text"
+                                            style="width: 190px"/>
+                        <input hidden id="updateRolesName" name="updateRolesName" ng-model="updateRolesName" type="text"
+                               style="width: 185px" onFocus="TxtOF(this)" onBlur="TxtOB(this)"/>
+                        <!--<th width="20%;"><span>*</span> 所属机构：</th>-->
+                        <!--<td width="30%"><select id="updateOrgId" name="updateOrgId" ng-model="updateOrgId"-->
+                        <!--ng-options="roles.code as roles.name for roles in orgList" type="text"-->
+                        <!--style="width: 190px"/></td>-->
+                    <th width="20%;"><span>*</span>所属商店：</th>
+                    <td width="30%"><input type="text" name="updateStore" id="updateStore"
+                                           ng-model="updateStore" readonly style="width: 185px"/></td>
+                </tr>
+                <tr>
+                    <th width="20%;">联系方式：</th>
+                    <td width="30%"><input type="text" name="updateTelephone" id="updateTelephone"
+                                           ng-model="updateTelephone" style="width: 185px"/></td>
+                    <th width="20%;">电子邮件：</th>
+                    <td width="30%"><input type="text" name="updateEmail" id="updateEmail" ng-model="updateEmail"
+                                           style="width: 185px"/></td>
+                </tr>
+            </table>
+            <div class="btn">
+                <input name="" type="button" value="确认" class="oper"
+                       ng-click="checkData('update','updateAdminName,updateAccount,updateRolesId','用户名称,用户账号,所属角色')"/>
+                <input name="" type="button" value="取消" class="oper" onClick="popOut('#P2')"/>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div id="P3" class="pop_bg">
+
+    <div class="form">
+        <div class="user-edit">
+            <div class="remark"> 注：带*号为必填项,密码应该由6-12个字符组成</div>
+            <table class="table_1" cellpupdateing="0" cellspacing="0">
+
+                <tr>
+                    <th width="20%;"> <span>*</span> 新密码 </th>
+                    <td width="30%"><input type="password" name="newPassword" id="newPassword" ng-model="newPassword" style="width: 185px" ng-blur="blur()" ng-keyup="keyup($event)"/></td>
+                    <td>
+                        <div class="new_set_tips" id="newPasswordTip" style="display:none">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码应该由6-12个字符组成
+                        </div>
+                    </td>
+
+                </tr>
+                <tr><div>
+                    <th>密码强度</th>
+                    <td>
+                        <div>
+                            <div class="code_pre01" id="code_pre01" ></div>
+                            <div class="code_pre02" id="code_pre02" ></div>
+                            <div class="code_pre03" id="code_pre03" ></div>
+                        </div>
+                    </td>
+                    <td></td>
+                </div></tr>
+
+                <tr>
+                    <th width="20%;"> <span>*</span> 确认密码</th>
+                    <td width="30%"><input type="password" name="confirmPassword" id="confirmPassword" ng-model="confirmPassword" ng-blur="blurcomfirm()" style="width: 185px"/></td>
+                    <td>
+                        <div class="new_set_tips" id="confirmPasswordTip" style="display:none">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对不起，密码不一致
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="btn">
+                <input name="" type="button" value="确认" class="oper" ng-click="changePassword()"/>
+                <input name="" type="button" value="取消" class="oper" onClick="popOut('#P3')"/>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

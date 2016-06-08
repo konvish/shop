@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kong.shop.dao.ex.IExMenuDAO">
+
+    <resultMap id="exMenu" type="com.kong.shop.domain.ex.ExMenu">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="nodeLevel" column="nodeLevel"/>
+        <result property="nodeOrder" column="nodeOrder"/>
+        <result property="parentId" column="parentId"/>
+        <result property="status" column="status"/>
+        <result property="lastModDate" column="lastModDate"/>
+        <result property="lastModifier" column="lastModifier"/>
+        <result property="createDate" column="createDate"/>
+        <result property="creator" column="creator"/>
+        <result property="parentName" column="parentName"/>
+
+        <collection property="menuList" column="{parentId=id}" select="com.kong.shop.dao.ex.IExMenuDAO.getExMenu">
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        parentId,
+        nodeOrder,
+        nodeLevel,
+        menuUrl,
+        parentId as pId
+    </sql>
+
+
+
+
+
+    <sql id="page_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        parentId,
+        nodeOrder,
+        nodeLevel,
+        menuUrl,
+        parentId as pId,
+        (select b.name from system_menu b where b.id=a.parentId) parentName
+    </sql>
+
+    <select id="queryPageByCondition" resultType="map">
+        SELECT
+        <include refid="page_Column_List" />
+        FROM system_menu a
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   lastModifier  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   lastModDate  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   name  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.parentId!=null">
+                ${condition.groupOp}   parentId  ${condition.parentId.op}  #{condition.parentId.data}
+            </if>
+            <if test="condition.nodeOrder!=null">
+                ${condition.groupOp}   nodeOrder  ${condition.nodeOrder.op}  #{condition.nodeOrder.data}
+            </if>
+            <if test="condition.nodeLevel!=null">
+                ${condition.groupOp}   nodeLevel  ${condition.nodeLevel.op}  #{condition.nodeLevel.data}
+            </if>
+
+        </where>
+
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="orderBy==null">
+            ORDER BY a.nodeLevel,a.nodeOrder
+        </if>
+
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+
+    <delete id="deleteAll" parameterType="java.lang.String">
+        DELETE FROM system_menu where id in
+        <foreach collection="array" item="item"  open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+    </delete>
+
+    <select id="queryMenuByAdmin" resultType="com.kong.shop.domain.ex.ExMenu">
+        SELECT
+        <include refid="page_Column_List" />
+        FROM system_menu a
+        where id in ( ${menuIds} )
+        ORDER BY a.nodeLevel,a.nodeOrder
+
+    </select>
+
+
+    <!--修改展示-->
+    <select id="getExMenu" resultMap="exMenu">
+        SELECT
+        <include refid="Base_Column_List"/>
+        ,
+        (select name from system_menu qzsm_p where qzsm_p.id = qzsm.parentid) as parentName
+        FROM system_menu qzsm
+        WHERE 1=1
+        <if test="parentId!=null">
+            AND parentId = #{parentId}
+        </if>
+        <if test="id!=null">
+            AND id = #{id}
+        </if>
+
+    </select>
+    <delete id="deleteMenuByIds" >
+        DELETE from system_menu where id in(${ids})
+    </delete>
+
+</mapper>
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>电子商城管理管理平台</title>
+
+    <link href="css/loginBack.css" rel="stylesheet">
+    <script language="JavaScript" charset="utf-8" src="/libs/jquery/jquery-1.9.1.min.js"></script>
+    <script language="JavaScript" charset="utf-8" src="/libs/jquery/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/libs/formvalues.js"></script>
+    <script type="text/javascript" src="/libs/underscore.js"></script>
+    <script type="text/javascript" src="/libs/angular/angularjs.js"></script>
+    <script language="javascript" charset="utf-8" src="/js/common.js"></script>
+    <script language="javascript" charset="utf-8" src="/js/login.js"></script>
+</head>
+
+<body ng-app="modelApp" ng-controller="modelListCtrl">
+<div class="head_warp">
+    <div class="logo_box">
+        |&nbsp;&nbsp;&nbsp;电子商城管理平台
+    </div>
+</div>
+<div class="top_warp">
+    <div class="top_box">
+        <div class="top_l_adv">
+            <h2><b></b></h2>
+            <h3></h3>
+        </div>
+        <div class="top_r_log">
+            <form class="login" id="loginForm" name="loginForm">
+                <h3>欢迎使用管理平台</h3>
+                <div><input name="" id="account" name="account"   ng-model="account"  type="text" class="login_user" placeholder="账号" /></div>
+                <div><input name="" id="password" name="password"  ng-model="password"  type="password" class="login_pass" placeholder="密码"  /></div>
+                <div>
+                    <input type="text" id="randCode" name="randCode" class="login_code" placeholder="验证码"/>
+                    <img id="img" src="/rand/code.do" title="更换验证码"/>
+                    <a  href="javascript:void(0)" onClick="refreshRand()">换一张</a>
+
+                </div>
+                <div><a class="b_login"  href="javascript:void(0);"  ng-click="sub()">登录</a></div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

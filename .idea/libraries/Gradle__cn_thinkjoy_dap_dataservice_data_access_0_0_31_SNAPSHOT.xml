@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.thinkjoy.dap.dataservice:data-access:0.0.31-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.dap.dataservice/data-access/0.0.31-SNAPSHOT/3e1b9dfb0ae308c5cdd500165bfe9efc9e2ea3b2/data-access-0.0.31-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.dap.dataservice/data-access/0.0.31-SNAPSHOT/37587caf3617c640383fbc3e80e23db9a8ed02f6/data-access-0.0.31-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

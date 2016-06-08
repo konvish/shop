@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ActivityOrderServiceTest" tests="0" skipped="0" failures="0" errors="0" timestamp="1970-01-01T00:00:00" hostname="kong" time="0.0">
+  <properties/>
+  <system-out><![CDATA[09:10:17,616 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.groovy]
+09:10:17,616 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+09:10:17,616 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/D:/360极速浏览器下载/kong/shop/shop-service/build/resources/main/logback.xml]
+09:10:17,616 |-WARN in ch.qos.logback.classic.LoggerContext[default] - Resource [logback.xml] occurs multiple times on the classpath.
+09:10:17,616 |-WARN in ch.qos.logback.classic.LoggerContext[default] - Resource [logback.xml] occurs at [file:/D:/360极速浏览器下载/kong/shop/shop-service/build/resources/main/logback.xml]
+09:10:17,616 |-WARN in ch.qos.logback.classic.LoggerContext[default] - Resource [logback.xml] occurs at [jar:file:/C:/Users/32/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-monitor-client/0.0.30-SNAPSHOT/8066e243f4e1e01db8321e9aab550f6680844205/cs-monitor-client-0.0.30-SNAPSHOT.jar!/logback.xml]
+09:10:17,803 |-INFO in ch.qos.logback.classic.joran.action.LoggerContextListenerAction - Adding LoggerContextListener of type [ch.qos.logback.classic.jul.LevelChangePropagator] to the object stack
+09:10:17,803 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@105de33e - Propagating DEBUG level on Logger[ROOT] onto the JUL framework
+09:10:17,803 |-INFO in ch.qos.logback.classic.joran.action.LoggerContextListenerAction - Starting LoggerContextListener
+09:10:17,803 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+09:10:17,818 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [DEBUG-FILE-APPENDER]
+09:10:17,896 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy - No compression will be used
+09:10:17,896 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy - Will use the pattern logs/mubs-debug.%d{yyyy-MM-dd}.log for the active file
+09:10:17,912 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - The date pattern is 'yyyy-MM-dd' from file name pattern 'logs/mubs-debug.%d{yyyy-MM-dd}.log'.
+09:10:17,912 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Roll-over at midnight.
+09:10:17,912 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Setting initial period to Wed Mar 16 09:10:17 CST 2016
+09:10:17,912 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+09:10:17,974 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.boolex.JaninoEventEvaluator] for [evaluator] property
+09:10:18,425 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[DEBUG-FILE-APPENDER] - Active log file name: logs/mubs-debug.2016-03-16.log
+09:10:18,425 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[DEBUG-FILE-APPENDER] - File property is set to [null]
+09:10:18,428 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+09:10:18,428 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [WARN-FILE-APPENDER]
+09:10:18,430 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy - No compression will be used
+09:10:18,430 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy - Will use the pattern logs/mubs-warn.%d{yyyy-MM-dd}.log for the active file
+09:10:18,431 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - The date pattern is 'yyyy-MM-dd' from file name pattern 'logs/mubs-warn.%d{yyyy-MM-dd}.log'.
+09:10:18,432 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Roll-over at midnight.
+09:10:18,432 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Setting initial period to Wed Mar 16 09:10:18 CST 2016
+09:10:18,433 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+09:10:18,440 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[WARN-FILE-APPENDER] - Active log file name: logs/mubs-warn.2016-03-16.log
+09:10:18,441 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[WARN-FILE-APPENDER] - File property is set to [null]
+09:10:18,441 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+09:10:18,442 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [SPECLOGGER-APPENDER]
+09:10:18,443 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy - No compression will be used
+09:10:18,444 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy - Will use the pattern logs/mubs-spec.%d{yyyy-MM-dd}.log for the active file
+09:10:18,445 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - The date pattern is 'yyyy-MM-dd' from file name pattern 'logs/mubs-spec.%d{yyyy-MM-dd}.log'.
+09:10:18,445 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Roll-over at midnight.
+09:10:18,446 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Setting initial period to Wed Mar 16 09:10:18 CST 2016
+09:10:18,446 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+09:10:18,448 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[SPECLOGGER-APPENDER] - Active log file name: logs/mubs-spec.2016-03-16.log
+09:10:18,448 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[SPECLOGGER-APPENDER] - File property is set to [null]
+09:10:18,448 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+09:10:18,462 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [STDOUT-APPENDER]
+09:10:18,466 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+09:10:18,470 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [SPECLOGGER] to DEBUG
+09:10:18,471 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@105de33e - Propagating DEBUG level on Logger[SPECLOGGER] onto the JUL framework
+09:10:18,471 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [SPECLOGGER-APPENDER] to Logger[SPECLOGGER]
+09:10:18,474 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [cn.thinkjoy] to WARN
+09:10:18,474 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@105de33e - Propagating WARN level on Logger[cn.thinkjoy] onto the JUL framework
+09:10:18,474 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [DEBUG-FILE-APPENDER] to Logger[cn.thinkjoy]
+09:10:18,475 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [WARN-FILE-APPENDER] to Logger[cn.thinkjoy]
+09:10:18,475 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to DEBUG
+09:10:18,475 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT-APPENDER] to Logger[ROOT]
+09:10:18,476 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+09:10:18,478 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@3e3e4203 - Registering current configuration as safe fallback point
+20160316-09:10:18.553+0800|default|Test worker|DEBUG|org.springframework.test.context.junit4.SpringJUnit4ClassRunner|SpringJUnit4ClassRunner constructor called with [class ActivityOrderServiceTest].
+20160316-09:10:18.575+0800|default|Test worker|DEBUG|org.springframework.test.context.BootstrapUtils|Instantiating TestContextBootstrapper from class [org.springframework.test.context.support.DefaultTestContextBootstrapper]
+20160316-09:10:18.630+0800|default|Test worker|DEBUG|org.springframework.test.context.support.AbstractDelegatingSmartContextLoader|Delegating to GenericXmlContextLoader to process context configuration [ContextConfigurationAttributes@91da402 declaringClass = 'ActivityOrderServiceTest', classes = '{}', locations = '{classpath:spring-service.xml}', inheritLocations = true, initializers = '{}', inheritInitializers = true, name = [null], contextLoaderClass = 'org.springframework.test.context.ContextLoader'].
+20160316-09:10:18.640+0800|default|Test worker|DEBUG|org.springframework.test.context.support.ActiveProfilesUtils|Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [ActivityOrderServiceTest]
+20160316-09:10:18.648+0800|default|Test worker|DEBUG|org.springframework.test.context.support.DefaultTestContextBootstrapper|@TestExecutionListeners is not present for class [ActivityOrderServiceTest]: using defaults.
+20160316-09:10:18.665+0800|default|Test worker|INFO |org.springframework.test.context.support.DefaultTestContextBootstrapper|Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+20160316-09:10:18.678+0800|default|Test worker|INFO |org.springframework.test.context.support.DefaultTestContextBootstrapper|Could not instantiate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [javax/servlet/ServletContext]
+20160316-09:10:18.702+0800|default|Test worker|INFO |org.springframework.test.context.support.DefaultTestContextBootstrapper|Using TestExecutionListeners: [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@44c8ec0c, org.springframework.test.context.support.DirtiesContextTestExecutionListener@63012b1b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@61b52c64, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3d758b59]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

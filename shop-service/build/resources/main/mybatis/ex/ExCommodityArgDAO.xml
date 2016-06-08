@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kong.shop.dao.ex.IExCommodityArgDAO">
+
+    <sql id="Base_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        parentId,
+        nodeOrder,
+        nodeLevel,
+        context,
+        commodityId
+    </sql>
+
+    <sql id="page_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        parentId,
+        nodeOrder,
+        nodeLevel,
+        context,
+        commodityId,
+        (SELECT c.name FROM shop_commodity c WHERE c.id=a.commodityId) AS commodityName,
+        (select b.name from shop_commodity_arg b where b.id=a.parentId) parentName
+    </sql>
+
+    <resultMap id="exCommodityArg" type="com.kong.shop.domain.ex.ExCommodityArg">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="nodeLevel" column="nodeLevel"/>
+        <result property="nodeOrder" column="nodeOrder"/>
+        <result property="parentId" column="parentId"/>
+        <result property="status" column="status"/>
+        <result property="lastModDate" column="lastModDate"/>
+        <result property="lastModifier" column="lastModifier"/>
+        <result property="createDate" column="createDate"/>
+        <result property="creator" column="creator"/>
+        <result property="context" column="context"/>
+        <result property="parentName" column="parentName"/>
+        <result property="commodityId" column="commodityId"/>
+        <result property="commodityName" column="commodityName"/>
+
+        <collection property="commodityArgList" column="{parentId=id}"
+                    select="com.kong.shop.dao.ex.IExCommodityArgDAO.getExCommodityArg">
+        </collection>
+    </resultMap>
+
+    <select id="getExCommodityArg" resultMap="exCommodityArg">
+        SELECT
+        <include refid="page_Column_List" />
+        FROM shop_commodity_arg a
+        WHERE 1=1
+        <if test="parentId!=null">
+            AND a.parentId = #{parentId}
+        </if>
+        <if test="id!=null">
+            AND a.id = #{id}
+        </if>
+    </select>
+
+    <delete id="deleteAll" parameterType="java.lang.String">
+        DELETE FROM shop_commodity_arg where id in
+        <foreach collection="array" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+    </delete>
+
+    <delete id="deleteCommodityArgByIds">
+        DELETE from shop_commodity_arg where id in(${ids})
+    </delete>
+
+    <select id="queryPageByCondition" resultType="map">
+        SELECT
+        <include refid="page_Column_List" />
+        FROM shop_commodity_arg a
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   lastModifier  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   lastModDate  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   name  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.parentId!=null">
+                ${condition.groupOp}   parentId  ${condition.parentId.op}  #{condition.parentId.data}
+            </if>
+            <if test="condition.nodeOrder!=null">
+                ${condition.groupOp}   nodeOrder  ${condition.nodeOrder.op}  #{condition.nodeOrder.data}
+            </if>
+            <if test="condition.nodeLevel!=null">
+                ${condition.groupOp}   nodeLevel  ${condition.nodeLevel.op}  #{condition.nodeLevel.data}
+            </if>
+            <if test="condition.commodityId!=null">
+                ${condition.groupOp}   commodityId  ${condition.commodityId.op}  #{condition.commodityId.data}
+            </if>
+            <if test="condition.context!=null">
+                ${condition.groupOp}   context  ${condition.context.op}  #{condition.context.data}
+            </if>
+        </where>
+
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="orderBy==null">
+            ORDER BY a.nodeLevel,a.nodeOrder
+        </if>
+
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+</mapper>
+

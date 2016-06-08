@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.kohsuke.stapler:json-lib:2.4-jenkins-3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.kohsuke.stapler/json-lib/2.4-jenkins-3/83f848493c09c735861a90e91591499fb88d7fbb/json-lib-2.4-jenkins-3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.kohsuke.stapler/json-lib/2.4-jenkins-3/867bf66ff8d3de645d9128c109ddb82240d86d38/json-lib-2.4-jenkins-3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

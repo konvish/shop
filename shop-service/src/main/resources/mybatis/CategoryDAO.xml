@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kong.shop.dao.ICategoryDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        parentId,
+        nodeOrder,
+        nodeLevel,
+        cateUrl
+    </sql>
+    <insert id="insert" parameterType="Category">
+        INSERT INTO shop_category (
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        parentId,
+        nodeOrder,
+        nodeLevel,
+        cateUrl
+        ) VALUES (
+        #{creator},
+        #{createDate},
+        #{lastModifier},
+        #{lastModDate},
+        #{status},
+        #{name},
+        #{parentId},
+        #{nodeOrder},
+        #{nodeLevel},
+        #{cateUrl}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+        SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="Category">
+        UPDATE shop_category
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="creator!=null">
+                creator = #{creator},
+            </if>
+            <if test="createDate!=null">
+                createDate = #{createDate},
+            </if>
+            <if test="lastModifier!=null">
+                lastModifier = #{lastModifier},
+            </if>
+            <if test="lastModDate!=null">
+                lastModDate = #{lastModDate},
+            </if>
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="parentId!=null">
+                parentId = #{parentId},
+            </if>
+            <if test="nodeOrder!=null">
+                nodeOrder = #{nodeOrder},
+            </if>
+            <if test="nodeLevel!=null">
+                nodeLevel = #{nodeLevel},
+            </if>
+            <if test="cateUrl!=null">
+                cateUrl = #{cateUrl},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE shop_category
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.creator!=null">
+                creator = #{map.creator},
+            </if>
+            <if test="map.createDate!=null">
+                createDate = #{map.createDate},
+            </if>
+            <if test="map.lastModifier!=null">
+                lastModifier = #{map.lastModifier},
+            </if>
+            <if test="map.lastModDate!=null">
+                lastModDate = #{map.lastModDate},
+            </if>
+            <if test="map.status!=null">
+                status = #{map.status},
+            </if>
+            <if test="map.name!=null">
+                name = #{map.name},
+            </if>
+            <if test="map.parentId!=null">
+                parentId = #{map.parentId},
+            </if>
+            <if test="map.nodeOrder!=null">
+                nodeOrder = #{map.nodeOrder},
+            </if>
+            <if test="map.nodeLevel!=null">
+                nodeLevel = #{map.nodeLevel},
+            </if>
+            <if test="map.cateUrl!=null">
+                cateUrl = #{map.cateUrl},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE shop_category
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.creator!=null">
+                creator = #{update.creator},
+            </if>
+            <if test="update.createDate!=null">
+                createDate = #{update.createDate},
+            </if>
+            <if test="update.lastModifier!=null">
+                lastModifier = #{update.lastModifier},
+            </if>
+            <if test="update.lastModDate!=null">
+                lastModDate = #{update.lastModDate},
+            </if>
+            <if test="update.status!=null">
+                status = #{update.status},
+            </if>
+            <if test="update.name!=null">
+                name = #{update.name},
+            </if>
+            <if test="update.parentId!=null">
+                parentId = #{update.parentId},
+            </if>
+            <if test="update.nodeOrder!=null">
+                nodeOrder = #{update.nodeOrder},
+            </if>
+            <if test="update.nodeLevel!=null">
+                nodeLevel = #{update.nodeLevel},
+            </if>
+            <if test="update.cateUrl!=null">
+                cateUrl = #{update.cateUrl},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.parentId!=null">
+                AND parentId = #{condition.parentId}
+            </if>
+            <if test="condition.nodeOrder!=null">
+                AND nodeOrder = #{condition.nodeOrder}
+            </if>
+            <if test="condition.nodeLevel!=null">
+                AND nodeLevel = #{condition.nodeLevel}
+            </if>
+            <if test="condition.cateUrl!=null">
+                AND cateUrl = #{condition.cateUrl}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO shop_category (
+                creator,
+                createDate,
+                lastModifier,
+                lastModDate,
+                status,
+                name,
+                parentId,
+                nodeOrder,
+                nodeLevel,
+                cateUrl
+        ) VALUES (
+                    #{map.creator},
+                    #{map.createDate},
+                    #{map.lastModifier},
+                    #{map.lastModDate},
+                    #{map.status},
+                    #{map.name},
+                    #{map.parentId},
+                    #{map.nodeOrder},
+                    #{map.nodeLevel},
+                    #{map.cateUrl}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="Category">
+        UPDATE shop_category
+        <trim prefix="SET" suffixOverrides=",">
+            creator = #{creator},
+            createDate = #{createDate},
+            lastModifier = #{lastModifier},
+            lastModDate = #{lastModDate},
+            status = #{status},
+            name = #{name},
+            parentId = #{parentId},
+            nodeOrder = #{nodeOrder},
+            nodeLevel = #{nodeLevel},
+            cateUrl = #{cateUrl},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM shop_category
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM shop_category
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="creator!=null">
+                AND creator = #{creator}
+            </if>
+            <if test="createDate!=null">
+                AND createDate = #{createDate}
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier = #{lastModifier}
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate = #{lastModDate}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
+            </if>
+            <if test="name!=null">
+                AND name = #{name}
+            </if>
+            <if test="parentId!=null">
+                AND parentId = #{parentId}
+            </if>
+            <if test="nodeOrder!=null">
+                AND nodeOrder = #{nodeOrder}
+            </if>
+            <if test="nodeLevel!=null">
+                AND nodeLevel = #{nodeLevel}
+            </if>
+            <if test="cateUrl!=null">
+                AND cateUrl = #{cateUrl}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM shop_category WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Integer" resultType="Category">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_category
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+       
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="Category">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_category WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="Category">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_category WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="Category">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_category
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="Category">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_category
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   lastModifier  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   lastModDate  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   name  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.parentId!=null">
+                ${condition.groupOp}   parentId  ${condition.parentId.op}  #{condition.parentId.data}
+            </if>
+            <if test="condition.nodeOrder!=null">
+                ${condition.groupOp}   nodeOrder  ${condition.nodeOrder.op}  #{condition.nodeOrder.data}
+            </if>
+            <if test="condition.nodeLevel!=null">
+                ${condition.groupOp}   nodeLevel  ${condition.nodeLevel.op}  #{condition.nodeLevel.data}
+            </if>
+            <if test="condition.cateUrl!=null">
+                ${condition.groupOp}   cateUrl  ${condition.cateUrl.op}  #{condition.cateUrl.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="Category">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_category
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id like CONCAT('%', #{id} , '%')
+            </if>
+            <if test="creator!=null">
+                AND creator like CONCAT('%', #{creator} , '%')
+            </if>
+            <if test="createDate!=null">
+                AND createDate like CONCAT('%', #{createDate} , '%')
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier like CONCAT('%', #{lastModifier} , '%')
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate like CONCAT('%', #{lastModDate} , '%')
+            </if>
+            <if test="status!=null">
+                AND status like CONCAT('%', #{status} , '%')
+            </if>
+            <if test="name!=null">
+                AND name like CONCAT('%', #{name} , '%')
+            </if>
+            <if test="parentId!=null">
+                AND parentId like CONCAT('%', #{parentId} , '%')
+            </if>
+            <if test="nodeOrder!=null">
+                AND nodeOrder like CONCAT('%', #{nodeOrder} , '%')
+            </if>
+            <if test="nodeLevel!=null">
+                AND nodeLevel like CONCAT('%', #{nodeLevel} , '%')
+            </if>
+            <if test="cateUrl!=null">
+                AND cateUrl like CONCAT('%', #{cateUrl} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="Category">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_category
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.parentId!=null">
+                AND parentId = #{condition.parentId}
+            </if>
+            <if test="condition.nodeOrder!=null">
+                AND nodeOrder = #{condition.nodeOrder}
+            </if>
+            <if test="condition.nodeLevel!=null">
+                AND nodeLevel = #{condition.nodeLevel}
+            </if>
+            <if test="condition.cateUrl!=null">
+                AND cateUrl = #{condition.cateUrl}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="Category">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shop_category
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.parentId!=null">
+                AND parentId = #{condition.parentId}
+            </if>
+            <if test="condition.nodeOrder!=null">
+                AND nodeOrder = #{condition.nodeOrder}
+            </if>
+            <if test="condition.nodeLevel!=null">
+                AND nodeLevel = #{condition.nodeLevel}
+            </if>
+            <if test="condition.cateUrl!=null">
+                AND cateUrl = #{condition.cateUrl}
+            </if>
+        </trim>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM shop_category
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="creator!=null">
+               ${groupOp} creator ${creator.op}  #{creator.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} createDate ${createDate.op}  #{createDate.data}
+           </if>
+           <if test="lastModifier!=null">
+               ${groupOp} lastModifier ${lastModifier.op}  #{lastModifier.data}
+           </if>
+           <if test="lastModDate!=null">
+               ${groupOp} lastModDate ${lastModDate.op}  #{lastModDate.data}
+           </if>
+           <if test="status!=null">
+               ${groupOp} status ${status.op}  #{status.data}
+           </if>
+           <if test="name!=null">
+               ${groupOp} name ${name.op}  #{name.data}
+           </if>
+           <if test="parentId!=null">
+               ${groupOp} parentId ${parentId.op}  #{parentId.data}
+           </if>
+           <if test="nodeOrder!=null">
+               ${groupOp} nodeOrder ${nodeOrder.op}  #{nodeOrder.data}
+           </if>
+           <if test="nodeLevel!=null">
+               ${groupOp} nodeLevel ${nodeLevel.op}  #{nodeLevel.data}
+           </if>
+           <if test="cateUrl!=null">
+               ${groupOp} cateUrl ${cateUrl.op}  #{cateUrl.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        SELECT
+        MAX(id)
+        FROM shop_category
+    </select>
+
+</mapper>
+

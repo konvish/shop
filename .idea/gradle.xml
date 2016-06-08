@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="D:/Program Files/gradle-2.8" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/shop-admin-war" />
+            <option value="$PROJECT_DIR$/shop-api" />
+            <option value="$PROJECT_DIR$/shop-domain" />
+            <option value="$PROJECT_DIR$/shop-facade" />
+            <option value="$PROJECT_DIR$/shop-mq" />
+            <option value="$PROJECT_DIR$/shop-service" />
+            <option value="$PROJECT_DIR$/shop-web-war" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

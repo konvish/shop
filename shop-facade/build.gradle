@@ -1,0 +1,14 @@
+group 'com.kong.shop'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile "org.springframework:spring-test:$springTestVersion"
+
+    compile project(':shop-api')
+    compile project(':shop-service')
+}
+
+//mainClassName=""

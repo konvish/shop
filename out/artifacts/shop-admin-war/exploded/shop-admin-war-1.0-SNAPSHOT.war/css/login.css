@@ -1,0 +1,176 @@
+@charset "utf-8";
+/* CSS Document */
+body,img,ul,li,a,input{
+	padding:0px;
+	margin:0px;
+	}
+body{
+	background-color:#eeeeee;
+	}
+.login_top{
+	width:100%;
+	background-color:#fff;
+	height:auto;
+	}
+.login_topcon{
+	width:1000px;
+	height:30px;
+	margin:auto;
+	}
+.logo{
+	float:left;
+	margin-top:6px;
+	}
+.logo_sm{
+	float:left;
+	margin-top:31px;
+	margin-left:10px;
+	}
+.login_topdl{
+	float:right;
+	line-height:30px;
+	font-family:"微软雅黑";
+
+	font-size:24px;
+	color:#cccccc;
+	}
+.login_shadow{
+	width:100%;
+	height:7px;
+	background:url(../images/shadow.png) repeat-x;
+	}
+.login_con{
+	width:1000px;
+	height:370px;
+	margin:auto;
+	margin-top:47px;
+	background:url(../images/login_img.png) no-repeat;
+	}
+.login_concon{
+	width:270px;
+	float:right;
+	height:343px;
+	margin-right:60px;
+	}
+.login_concon_logo{
+	width:174px;
+	height:87px;
+	background-image:url(../images/logo1.png);
+	margin:20px auto;
+	}
+.clear{
+	clear:both;
+	}
+.login_user{
+	width:254px;
+	height:44px;
+	padding:2px;
+	background:url(../images/login_user.png) no-repeat;
+	margin:auto;
+	margin-top:5px;
+	}
+.login_user input{
+	width:214px;
+	margin-left:40px;
+	height:44px;
+	font-family:"微软雅黑";
+	font-size:14px;
+	color:#666;
+	border:0;
+	outline:none;
+	}
+.login_password{
+	width:254px;
+	height:44px;
+	padding:2px;
+	background:url(../images/login_password.png) no-repeat;
+	margin:auto;
+	margin-top:20px;
+	}
+.login_password input{
+	width:214px;
+	margin-left:40px;
+	height:44px;
+	font-family:"微软雅黑";
+	font-size:14px;
+	color:#666;
+	border:0;
+	outline:none;
+	}
+	
+.login_captcha input{
+	width:136px;
+	height:44px;
+	line-height:44px;
+	background:url(../images/login_captcha.png) no-repeat;
+	border:0px;
+	outline:0px;
+	margin-left:5px;
+	margin-top: -37px;
+	top: 6px
+}
+.login-box .control {
+	margin-bottom: 10px
+}
+.login-box .control .validcode {
+	margin: 0 10px;
+	position: relative;
+	top: 10px
+}
+.login-box .control input.span2 {
+	width: 82px
+}
+.login-box .control input.text {
+	border: none;
+	width: 136px;
+	height:44px;
+	font-size: 12px;
+	background:url(../images/login_captcha.png) no-repeat;
+	margin-left:5px;
+	line-height: 44px
+}
+.input-xlarge {
+	width: 220px;
+	margin-top: 10px;
+	border-radius: 0;
+	font-size: 12px
+}
+.relative {
+	position: relative
+}
+.login_but{
+	width:258px;
+	height:40px;
+	line-height:40px;
+	margin:10px auto;
+	}
+.login_but input{
+	width:258px;
+	height:40px;
+	background-color:#228fb8;
+	font-family:"微软雅黑";
+	font-size:16px;
+	color:#fff;
+	border:0px;
+	border-radius:5px;
+	cursor:pointer;
+	}
+input.login_buthover{
+	background-color:#006f99;
+	}
+input.login_butout{
+	background-color:#228fb8;
+	}
+
+.footer{
+	width:100%;
+	height:34px;
+	background-color:#555555;
+	text-align:center;
+	line-height:34px;
+	font-size:12px;
+	color:#fff;
+	font-family:"宋体";
+	position:absolute;
+	bottom:0px;
+	}

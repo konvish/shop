@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.thinkjoy.cloudstack:cs-spring-zkconfig:0.0.36-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-spring-zkconfig/0.0.36-SNAPSHOT/c3457d5c3ebcb0df80365200aed6c14a3f0b0196/cs-spring-zkconfig-0.0.36-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.thinkjoy.cloudstack/cs-spring-zkconfig/0.0.36-SNAPSHOT/d7ddfb4a23de60264e4c07b7bb3180eabbe81f52/cs-spring-zkconfig-0.0.36-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

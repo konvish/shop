@@ -1,0 +1,82 @@
+apply plugin: 'java'
+apply from: 'dependencies.gradle'
+
+/*全局配置*/
+allprojects {
+    /*坐标*/
+    group 'com.kong.shop'
+    version '1.0-SNAPSHOT'
+    /*自带插件*/
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'maven'
+    apply plugin: 'eclipse'
+    /*1.7环境*/
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    /*UTF-8 很重要*/
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.warnings = false
+    }
+
+    tasks.withType(org.gradle.api.tasks.javadoc.Javadoc) {
+        options.encoding = 'UTF-8'
+    }
+
+    javadoc {
+        options.charSet = 'UTF-8'
+    }
+}
+
+/** 子项目配置 */
+subprojects {
+    configurations {
+        provided
+        compile.extendsFrom provided
+        all*.exclude group: 'org.springframework', module: 'spring'
+        all*.exclude group: 'asm', module: 'asm'
+        all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+    }
+    /*类库配置*/
+    repositories {
+        repositories { maven { url 'http://repo.thinkjoy.cn/content/groups/public/' } }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        //都会依赖domain
+        compile group: "cn.thinkjoy.common", name: "thinkjoy-domain-common", version: "$thinkjoyCommonVersion", changing: true
+    }
+    /*生成源码jar*/
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+    /*生成javadoc的jar*/
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+    /** 有时候会报错，但需要执行 */
+    task createREADME() {
+        file("README.md").createNewFile()
+    }
+    artifacts {
+        archives jar
+    }
+}
+
+/*生成javadoc*/
+def exportedProjects = [
+        ":shop-api",
+        ":shop-domain"
+]
+
+task alljavadoc(type: Javadoc) {
+    options.charSet = 'UTF-8'
+    options.memberLevel = JavadocMemberLevel.PRIVATE
+    source exportedProjects.collect { project(it).sourceSets.main.allJava }
+    classpath = files(exportedProjects.collect { project(it).sourceSets.main.compileClasspath })
+    destinationDir = file("${buildDir}/docs/javadoc")
+}

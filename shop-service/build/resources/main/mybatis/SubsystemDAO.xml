@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kong.shop.dao.ISubsystemDAO">
+<!--
+insert
+update
+updateNull
+deleteById
+deleteByCondition
+deleteByProperty
+fetch
+findOne
+findList
+findAll
+queryPage
+like
+queryList
+queryOne
+count
+selectMaxId
+updateOrSave
+selectOne
+selectList
+-->
+    <sql id="Base_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        sysLevel,
+        sysUrl,
+        orderNum,
+        higherLevel,
+        orgId
+    </sql>
+    <insert id="insert" parameterType="Subsystem">
+        INSERT INTO system_subsystem (
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        sysLevel,
+        sysUrl,
+        orderNum,
+        higherLevel,
+        orgId
+        ) VALUES (
+        #{creator},
+        #{createDate},
+        #{lastModifier},
+        #{lastModDate},
+        #{status},
+        #{name},
+        #{sysLevel},
+        #{sysUrl},
+        #{orderNum},
+        #{higherLevel},
+        #{orgId}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+        SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="Subsystem">
+        UPDATE system_subsystem
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="creator!=null">
+                creator = #{creator},
+            </if>
+            <if test="createDate!=null">
+                createDate = #{createDate},
+            </if>
+            <if test="lastModifier!=null">
+                lastModifier = #{lastModifier},
+            </if>
+            <if test="lastModDate!=null">
+                lastModDate = #{lastModDate},
+            </if>
+            <if test="status!=null">
+                status = #{status},
+            </if>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="sysLevel!=null">
+                sysLevel = #{sysLevel},
+            </if>
+            <if test="sysUrl!=null">
+                sysUrl = #{sysUrl},
+            </if>
+            <if test="orderNum!=null">
+                orderNum = #{orderNum},
+            </if>
+            <if test="higherLevel!=null">
+                higherLevel = #{higherLevel},
+            </if>
+            <if test="orgId!=null">
+                orgId = #{orgId},
+            </if>
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+
+    <update id="updateMap">
+        UPDATE system_subsystem
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.creator!=null">
+                creator = #{map.creator},
+            </if>
+            <if test="map.createDate!=null">
+                createDate = #{map.createDate},
+            </if>
+            <if test="map.lastModifier!=null">
+                lastModifier = #{map.lastModifier},
+            </if>
+            <if test="map.lastModDate!=null">
+                lastModDate = #{map.lastModDate},
+            </if>
+            <if test="map.status!=null">
+                status = #{map.status},
+            </if>
+            <if test="map.name!=null">
+                name = #{map.name},
+            </if>
+            <if test="map.sysLevel!=null">
+                sysLevel = #{map.sysLevel},
+            </if>
+            <if test="map.sysUrl!=null">
+                sysUrl = #{map.sysUrl},
+            </if>
+            <if test="map.orderNum!=null">
+                orderNum = #{map.orderNum},
+            </if>
+            <if test="map.higherLevel!=null">
+                higherLevel = #{map.higherLevel},
+            </if>
+            <if test="map.orgId!=null">
+                orgId = #{map.orgId},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE system_subsystem
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.creator!=null">
+                creator = #{update.creator},
+            </if>
+            <if test="update.createDate!=null">
+                createDate = #{update.createDate},
+            </if>
+            <if test="update.lastModifier!=null">
+                lastModifier = #{update.lastModifier},
+            </if>
+            <if test="update.lastModDate!=null">
+                lastModDate = #{update.lastModDate},
+            </if>
+            <if test="update.status!=null">
+                status = #{update.status},
+            </if>
+            <if test="update.name!=null">
+                name = #{update.name},
+            </if>
+            <if test="update.sysLevel!=null">
+                sysLevel = #{update.sysLevel},
+            </if>
+            <if test="update.sysUrl!=null">
+                sysUrl = #{update.sysUrl},
+            </if>
+            <if test="update.orderNum!=null">
+                orderNum = #{update.orderNum},
+            </if>
+            <if test="update.higherLevel!=null">
+                higherLevel = #{update.higherLevel},
+            </if>
+            <if test="update.orgId!=null">
+                orgId = #{update.orgId},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.sysLevel!=null">
+                AND sysLevel = #{condition.sysLevel}
+            </if>
+            <if test="condition.sysUrl!=null">
+                AND sysUrl = #{condition.sysUrl}
+            </if>
+            <if test="condition.orderNum!=null">
+                AND orderNum = #{condition.orderNum}
+            </if>
+            <if test="condition.higherLevel!=null">
+                AND higherLevel = #{condition.higherLevel}
+            </if>
+            <if test="condition.orgId!=null">
+                AND orgId = #{condition.orgId}
+            </if>
+        </trim>
+    </update>
+
+    <insert id="insertMap" >
+        INSERT INTO system_subsystem (
+                creator,
+                createDate,
+                lastModifier,
+                lastModDate,
+                status,
+                name,
+                sysLevel,
+                sysUrl,
+                orderNum,
+                higherLevel,
+                orgId
+        ) VALUES (
+                    #{map.creator},
+                    #{map.createDate},
+                    #{map.lastModifier},
+                    #{map.lastModDate},
+                    #{map.status},
+                    #{map.name},
+                    #{map.sysLevel},
+                    #{map.sysUrl},
+                    #{map.orderNum},
+                    #{map.higherLevel},
+                    #{map.orgId}
+        )
+    </insert>
+
+
+    <update id="updateNull" parameterType="Subsystem">
+        UPDATE system_subsystem
+        <trim prefix="SET" suffixOverrides=",">
+            creator = #{creator},
+            createDate = #{createDate},
+            lastModifier = #{lastModifier},
+            lastModDate = #{lastModDate},
+            status = #{status},
+            name = #{name},
+            sysLevel = #{sysLevel},
+            sysUrl = #{sysUrl},
+            orderNum = #{orderNum},
+            higherLevel = #{higherLevel},
+            orgId = #{orgId},
+        </trim>
+        WHERE
+        id = #{id} 
+    </update>
+
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM system_subsystem
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM system_subsystem
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="creator!=null">
+                AND creator = #{creator}
+            </if>
+            <if test="createDate!=null">
+                AND createDate = #{createDate}
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier = #{lastModifier}
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate = #{lastModDate}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
+            </if>
+            <if test="name!=null">
+                AND name = #{name}
+            </if>
+            <if test="sysLevel!=null">
+                AND sysLevel = #{sysLevel}
+            </if>
+            <if test="sysUrl!=null">
+                AND sysUrl = #{sysUrl}
+            </if>
+            <if test="orderNum!=null">
+                AND orderNum = #{orderNum}
+            </if>
+            <if test="higherLevel!=null">
+                AND higherLevel = #{higherLevel}
+            </if>
+            <if test="orgId!=null">
+                AND orgId = #{orgId}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM system_subsystem WHERE
+        ${property} = #{value}
+    </delete>
+
+    <select id="fetch" parameterType="java.lang.Integer" resultType="Subsystem">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM system_subsystem
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+       
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="Subsystem">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM system_subsystem WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="Subsystem">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM system_subsystem WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="Subsystem">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM system_subsystem
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="Subsystem">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM system_subsystem
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   lastModifier  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   lastModDate  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   name  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.sysLevel!=null">
+                ${condition.groupOp}   sysLevel  ${condition.sysLevel.op}  #{condition.sysLevel.data}
+            </if>
+            <if test="condition.sysUrl!=null">
+                ${condition.groupOp}   sysUrl  ${condition.sysUrl.op}  #{condition.sysUrl.data}
+            </if>
+            <if test="condition.orderNum!=null">
+                ${condition.groupOp}   orderNum  ${condition.orderNum.op}  #{condition.orderNum.data}
+            </if>
+            <if test="condition.higherLevel!=null">
+                ${condition.groupOp}   higherLevel  ${condition.higherLevel.op}  #{condition.higherLevel.data}
+            </if>
+            <if test="condition.orgId!=null">
+                ${condition.groupOp}   orgId  ${condition.orgId.op}  #{condition.orgId.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="Subsystem">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM system_subsystem
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id like CONCAT('%', #{id} , '%')
+            </if>
+            <if test="creator!=null">
+                AND creator like CONCAT('%', #{creator} , '%')
+            </if>
+            <if test="createDate!=null">
+                AND createDate like CONCAT('%', #{createDate} , '%')
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier like CONCAT('%', #{lastModifier} , '%')
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate like CONCAT('%', #{lastModDate} , '%')
+            </if>
+            <if test="status!=null">
+                AND status like CONCAT('%', #{status} , '%')
+            </if>
+            <if test="name!=null">
+                AND name like CONCAT('%', #{name} , '%')
+            </if>
+            <if test="sysLevel!=null">
+                AND sysLevel like CONCAT('%', #{sysLevel} , '%')
+            </if>
+            <if test="sysUrl!=null">
+                AND sysUrl like CONCAT('%', #{sysUrl} , '%')
+            </if>
+            <if test="orderNum!=null">
+                AND orderNum like CONCAT('%', #{orderNum} , '%')
+            </if>
+            <if test="higherLevel!=null">
+                AND higherLevel like CONCAT('%', #{higherLevel} , '%')
+            </if>
+            <if test="orgId!=null">
+                AND orgId like CONCAT('%', #{orgId} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="Subsystem">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM system_subsystem
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.sysLevel!=null">
+                AND sysLevel = #{condition.sysLevel}
+            </if>
+            <if test="condition.sysUrl!=null">
+                AND sysUrl = #{condition.sysUrl}
+            </if>
+            <if test="condition.orderNum!=null">
+                AND orderNum = #{condition.orderNum}
+            </if>
+            <if test="condition.higherLevel!=null">
+                AND higherLevel = #{condition.higherLevel}
+            </if>
+            <if test="condition.orgId!=null">
+                AND orgId = #{condition.orgId}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="Subsystem">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM system_subsystem
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.sysLevel!=null">
+                AND sysLevel = #{condition.sysLevel}
+            </if>
+            <if test="condition.sysUrl!=null">
+                AND sysUrl = #{condition.sysUrl}
+            </if>
+            <if test="condition.orderNum!=null">
+                AND orderNum = #{condition.orderNum}
+            </if>
+            <if test="condition.higherLevel!=null">
+                AND higherLevel = #{condition.higherLevel}
+            </if>
+            <if test="condition.orgId!=null">
+                AND orgId = #{condition.orgId}
+            </if>
+        </trim>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(id) FROM system_subsystem
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="creator!=null">
+               ${groupOp} creator ${creator.op}  #{creator.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} createDate ${createDate.op}  #{createDate.data}
+           </if>
+           <if test="lastModifier!=null">
+               ${groupOp} lastModifier ${lastModifier.op}  #{lastModifier.data}
+           </if>
+           <if test="lastModDate!=null">
+               ${groupOp} lastModDate ${lastModDate.op}  #{lastModDate.data}
+           </if>
+           <if test="status!=null">
+               ${groupOp} status ${status.op}  #{status.data}
+           </if>
+           <if test="name!=null">
+               ${groupOp} name ${name.op}  #{name.data}
+           </if>
+           <if test="sysLevel!=null">
+               ${groupOp} sysLevel ${sysLevel.op}  #{sysLevel.data}
+           </if>
+           <if test="sysUrl!=null">
+               ${groupOp} sysUrl ${sysUrl.op}  #{sysUrl.data}
+           </if>
+           <if test="orderNum!=null">
+               ${groupOp} orderNum ${orderNum.op}  #{orderNum.data}
+           </if>
+           <if test="higherLevel!=null">
+               ${groupOp} higherLevel ${higherLevel.op}  #{higherLevel.data}
+           </if>
+           <if test="orgId!=null">
+               ${groupOp} orgId ${orgId.op}  #{orgId.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        SELECT
+        MAX(id)
+        FROM system_subsystem
+    </select>
+
+</mapper>
+

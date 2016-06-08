@@ -1,0 +1,14 @@
+
+dependencies {
+    compile project(":shop-api")
+    compile project(":shop-service")
+
+    compile 'org.springframework:spring-web:4.2.4.RELEASE'
+    compile 'org.springframework:spring-context:4.2.4.RELEASE'
+
+    compile group: "cn.thinkjoy.common", name: "thinkjoy-kafka-common", version: "$thinkjoyCommonVersion", changing: true
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+//mainClassName="com.kong.shop.mq.main.Main"

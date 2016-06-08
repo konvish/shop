@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html style="overflow:hidden">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>电子商城管理平台</title>
+    <link href="/css/css.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <script language="JavaScript" charset="utf-8" src="/libs/jquery/jquery-1.9.1.min.js"></script>
+    <script language="JavaScript" charset="utf-8" src="/libs/jquery/jquery.cookie.js"></script>
+    <script language="JavaScript" charset="utf-8" src="libs/js_pack.js"></script>
+    <script language="JavaScript" charset="utf-8" src="libs/foldmenu.js"></script>
+    <script language="JavaScript" charset="utf-8" src="/js/index.js"></script>
+</head>
+<body>
+<div id="header">
+    <div class="logo"><strong>·</strong>&nbsp;&nbsp;电子商城管理平台</div>
+    <div class="info" ><p id="time">今天是：<em>2014年1月23日</em><em>星期四</em></p></div>
+
+    <ul class="user">
+        <li><a id="orgName" href="#" title=""></a></li>
+        <li> <em class="photo"><img src="images/user.png"/></em> <em class="name" >[<a  id="name"  href="#">张三</a>]</em> </li>
+        <li><a href="/bgLogout.do" title="注销"><img src="images/icon_a2.png"/></a></li>
+    </ul>
+</div>
+
+<div id="menu">
+    <div id="nav">
+    </div>
+</div>
+
+<div id="main">
+    <div id="label"> <a href="../welcome.html" target="mainFrame" onClick="Tab(this)" ><b><img src="images/home.png"/></b>欢迎页</a> </div>
+    <iframe frameborder="no" name="mainFrame" id="mainFrame" src="../welcome.html"></iframe>
+</div>
+
+<script type="text/javascript">
+    function Tab(o){
+        var m=document.getElementById('label').getElementsByTagName('a').length-1;
+        for(var i=0;i<=2;i++){document.getElementById('label').getElementsByTagName('a')[i].className='';}
+        o.className='cur';
+    }
+    function HideMenu(o){o.getElementsByTagName('ul')[0].style.display="none";}
+    function ShowMenu(o){o.getElementsByTagName('ul')[0].style.display="block";}
+
+    setInterval(showLeftTime,1000);
+
+    function showLeftTime(){
+        var str = GetCurrentDateTime();
+        jQuery('#time').html(str);
+    }
+
+    function GetCurrentDateTime() {
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1;
+        var date = d.getDate();
+        var week = d.getDay();
+        var hours = d.getHours();
+        var minutes = d.getMinutes();
+        var seconds = d.getSeconds();
+        var ms = d.getMilliseconds();
+        var curDateTime = '';
+        if (hours > 9){
+            curDateTime =hours;
+        }else{
+            curDateTime ="0" + hours;
+        }
+        if (minutes > 9){
+            curDateTime = curDateTime + ":" + minutes;
+        }else{
+            curDateTime = curDateTime + ":0" + minutes;
+        }
+        if (seconds > 9){
+            curDateTime = curDateTime + ":" + seconds;
+        }else{
+            curDateTime = curDateTime + ":0" + seconds;
+        }
+        curDateTime = curDateTime+" "+year;
+
+        if (month > 9)
+
+            curDateTime = curDateTime + "年" + month;
+
+        else
+
+            curDateTime = curDateTime + "年0" + month;
+
+        if (date > 9)
+
+            curDateTime = curDateTime + "月" + date + "日";
+
+        else
+
+            curDateTime = curDateTime + "月0" + date + "日";
+
+        var weekday = "";
+
+        if (week == 0)
+
+            weekday = "星期日";
+
+        else if (week == 1)
+
+            weekday = "星期一";
+
+        else if (week == 2)
+
+            weekday = "星期二";
+
+        else if (week == 3)
+
+            weekday = "星期三";
+
+        else if (week == 4)
+
+            weekday = "星期四";
+
+        else if (week == 5)
+
+            weekday = "星期五";
+
+        else if (week == 6)
+
+            weekday = "星期六";
+
+        curDateTime = curDateTime + " " + weekday;
+        return curDateTime;
+    }
+
+</script>
+</body>
+</html>

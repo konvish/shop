@@ -1,0 +1,151 @@
+@charset "utf-8";
+/* CSS Document */
+body {font-family: arial,"微软雅黑";font-size: 12px;line-height: 1.5;}
+*{margin: 0; padding: 0;}
+h1, h2, h3, h4, h5, h6 {font-size: 100%;}
+ol, ul {list-style: outside none none;}
+address, caption, cite, code, dfn, em, strong, th, var, optgroup {font-style: normal;}
+input, button, textarea, select, optgroup, option {font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;}
+fieldset, img, a img, *:link img, *:visited img {border: 0 none;}
+a {text-decoration: none;}
+a:hover {text-decoration: none;}
+:focus {outline: 0 none;}
+table {border-collapse: collapse;border-spacing: 0;}
+caption, th {text-align: left;}
+sup, sub {font-size: 100%;vertical-align: baseline;}
+blockquote, q {quotes: none;}
+blockquote::before, blockquote::after, q::before, q::after {content: none;}
+.clearfix {}
+.clear, .clearfix::after {clear: both;display: block;height: 0;overflow: hidden;}
+.clearfix::after {content: ".";visibility: hidden;}
+.font_l{ text-align:left}
+.font_r{ text-align:right}
+
+
+
+body{ width:100%; height:100%;position:relative; }
+
+/*--顶部 logo--*/
+.head_warp{ height:58px; background:#f6fbf9}
+.logo_box{ width:950px; margin:auto; padding-top:10px; font-size:18px; color:#777}
+.logo_box img{ margin-right:8px; vertical-align:middle}
+
+/*--顶部 登录--*/
+.top_warp{ background: #27a0ff url("../images/ban.jpg") no-repeat scroll center center;
+    height: 604px;
+    width: 100%;}
+.top_warp1{
+    /*height:564px;*/
+}
+.top_box{ width:950px;height:480px; margin:auto; clear:both; overflow:hidden;position: relative;}
+.top_box1{ width:980px; padding:40px 0; clear:both; margin:100px auto 100px; overflow:hidden;}
+.top_l_adv{ width:480px; padding:20px 0 0 20px;  margin:0; float:left; color:#fff}
+.top_l_adv h2{ font-size:32px; font-weight:100}
+.top_l_adv h2 b{ font-size:48px; padding-right:6px; font-weight:100}
+.top_l_adv h3{ font-size:24px; font-weight:100}
+.top_r_log{ width:450px; float:left}
+
+.login {
+    background:#fff;
+    padding:25px;
+    width: 250px;
+    margin:120px auto 0;
+    border-radius:3px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.2);
+    position: absolute;
+    right: 0;
+
+
+}
+
+.login_mm{ padding:0; height:20px; line-height:20px; clear:left; overflow:hidden; color:#7a8698; margin-bottom:14px;}
+.login_mm a:link,.login_mm a:visited{ color:#7a8698}
+.login_mm a:hover{ color:#0085d0}a.b_login:link,a.b_login:visited{ display:block; height:40px; background:#F0B950; font-size:16px; color:#fff; text-align:center; line-height:40px; border:1px solid #F0B950;border-radius:3px; }
+.login_mm span{ width:50%; float:left;}
+.login_mm span input{ vertical-align: middle; margin-right:2px;}
+.login h3{ font-size:20px;    font-weight: normal; color: #707498; padding:0 0 14px;text-align: center;}
+.login_user{ border:1px solid #e5e5e5; height:38px;; width:210px; line-height:38px; background:url(../images/ico-log01.png) 5px center no-repeat; margin-bottom:14px; color:#8e9db4;border-radius:3px; font-size:14px; padding-left:30px; }
+.login_pass{ border:1px solid #e5e5e5; height:38px; padding-left:30px; width:210px; line-height:38px; background:url(../images/ico-log02.png) 5px center no-repeat; margin-bottom:14px; color:#8e9db4;border-radius:3px; font-size:14px;}
+.login_code{ border:1px solid #e5e5e5; height:38px;; width:90px; line-height:38px; background:url(../images/ico-log01.png) 5px center no-repeat; margin-bottom:14px; color:#8e9db4;border-radius:3px; font-size:14px; padding-left:30px; }
+.login_yzm{ width:100px; height:30px; padding:0 5px; line-height:30px;  border:1px solid #aaabab; color:#a9a9a9;}
+
+
+.login a {
+    color: #0088CC;
+}
+
+
+.login a {
+    color: #0088CC;
+}
+/*--选择角色--*/
+a.change_role {
+    background: #f7f7f7 url(../images/sel_role_n.png) 410px 60px no-repeat;
+    border-radius: 3px;
+    box-shadow: 0 0 5px #ccc;
+    color: #999;
+    display:block;
+    float:left;
+    height:148px;
+    margin:15px 10px;
+    padding: 0;
+    width:450px;
+}
+a.change_role span {
+    border-right: 1px solid #dfdfdf;
+    display: block;
+    float: left;
+    height:108px;
+    padding:20px;
+    margin-right: 20px;
+    text-align: center;
+    width:108px;
+}
+a.change_role span img, a.change_role_s span img {
+
+    border-radius:108px;
+    height:108px;
+    width:108px;
+}
+a.change_role p, a.change_role_s p {
+    line-height:30px;
+}
+a.change_role:hover, a.change_role_s {
+    background: #f7f7f7 url(../images/sel_role_s.png) 410px 60px no-repeat;
+    border-radius: 3px;
+    box-shadow: 0 0 2px #01985d;
+    /*border:1px solid #00a364;*/
+    box-sizing: border-box;
+    color: #999;
+    display: block;
+    height:148px;
+    width:450px;
+    float:left;
+    margin:15px 10px;
+    padding: 0;
+    transition: all .8s;
+}
+a.change_role:hover span, a.change_role_s span {
+    background: #00a364;
+    border-radius: 3px 0 0 3px;
+    display: block;
+    float: left;
+    height:108px;
+    padding:20px;
+    margin-right:20px;
+    text-align: center;
+    width:108px;
+    transition: all .8s;
+
+}
+.p_school{ font-size:16px; padding-top:45px; color:#000}
+
+.foot-bg{ width:100%;padding:15px 0; background:#fff; color:#777}
+.footer{ text-align:center; width:1200px; margin:0 auto; font-size:12px; line-height:24px;}
+/*
+.log_box{ width:100%;margin:0px 0 0; height:37px;}
+.log_box span{ display:inline-block; vertical-align:middle;}
+.log_box .fr{ width:90px; height:37px;overflow:hidden;}
+.login .log_box .fl{ width:175px;border-bottom:1px solid #fff; height:36px; overflow:hidden;}
+.login .log_box .fl > input{ width:165px;color:#fff;height:36px; line-height:36px;padding-left:10px; background:none;}
+*/

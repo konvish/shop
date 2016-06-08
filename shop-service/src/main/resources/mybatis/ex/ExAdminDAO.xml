@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kong.shop.dao.ex.IExAdminDAO">
+
+    <sql id="Base_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        account,
+        password,
+        roleId,
+        storeId,
+        telephone,
+        email,
+        storeName
+    </sql>
+
+    <sql id="Select_Column_List">
+        id,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status,
+        name,
+        account,
+        password,
+        roleId,
+        storeId,
+        telephone,
+        email,
+        storeName,
+        (select b.NAME from system_roles b where a.roleId=b.id) roleName
+    </sql>
+
+
+
+    <delete id="deleteAll" parameterType="java.lang.String">
+        DELETE FROM system_admin where id in
+        <foreach collection="array" item="item"  open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+    </delete>
+
+
+    <select id="checkAccountAndPassword" parameterType="java.util.Map" resultType="com.kong.shop.domain.Admin">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM system_admin
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.account!=null">
+                AND account = #{condition.account}
+            </if>
+            <if test="condition.password!=null">
+                AND password = #{condition.password}
+            </if>
+            <if test="condition.roleId!=null">
+                AND roleId = #{condition.roleId}
+            </if>
+            <if test="condition.storeId!=null">
+                AND storeId = #{condition.storeId}
+            </if>
+            <if test="condition.telephone!=null">
+                AND telephone = #{condition.telephone}
+            </if>
+            <if test="condition.email!=null">
+                AND email = #{condition.email}
+            </if>
+        </trim>
+    </select>
+
+
+    <select id="queryAdminPageByCondition" resultType="map">
+        SELECT
+        <include refid="Select_Column_List" />
+        FROM system_admin a
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   lastModifier  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   lastModDate  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   name  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.account!=null">
+                ${condition.groupOp}   account  ${condition.account.op}  #{condition.account.data}
+            </if>
+            <if test="condition.password!=null">
+                ${condition.groupOp}   password  ${condition.password.op}  #{condition.password.data}
+            </if>
+            <if test="condition.roleId!=null">
+                ${condition.groupOp}   roleId  ${condition.roleId.op}  #{condition.roleId.data}
+            </if>
+            <if test="condition.storeId!=null">
+                ${condition.groupOp}   storeId  ${condition.storeId.op}  #{condition.storeId.data}
+            </if>
+            <if test="condition.telephone!=null">
+                ${condition.groupOp}   telephone  ${condition.telephone.op}  #{condition.telephone.data}
+            </if>
+            <if test="condition.email!=null">
+                ${condition.groupOp}   email  ${condition.email.op}  #{condition.email.data}
+            </if>
+            <if test="condition.storeName!=null">
+                ${condition.groupOp}   storeName  ${condition.storeName.op}  #{condition.storeName.data}
+            </if>
+
+
+        </where>
+
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+    <select id="getAdminMenuByAdminId" resultType="java.lang.String">
+        select qzsr.menuIds from system_admin qzsu left join system_roles qzsr on qzsu.roleId=qzsr.id where qzsu.id=#{id}
+    </select>
+
+</mapper>
+
